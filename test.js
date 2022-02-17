@@ -1,5 +1,5 @@
 const passengerFlights = {
-	1: [
+	777: [
 		{
 			_id: "aaa"
 		},
@@ -10,12 +10,12 @@ const passengerFlights = {
 			_id: "ccc"
 		}
 	],
-	2: [
+	888:[
 		{
 			_id: "ddd"
 		}
 	],
-	3: [
+	999: [
 		{
 			_id: "eee"
 		},
@@ -29,7 +29,7 @@ const getGroupedFlights = (passengerFlights) => {
 	/* 
 	REQUIREMENTS:
 
-	desired result:
+	1. desired result:
 	[
 		["aaa", "ddd", "eee"]
 		["aaa", "ddd", "fff"]
@@ -39,26 +39,21 @@ const getGroupedFlights = (passengerFlights) => {
 		["ccc", "ddd", "fff"]
 	]
 
-
+	2. number of passenger flights can be from 2 to n
 	*/
 
-
-
-
-
-	let pointer = 2;
-	const counters = [3, 3, 3];
-	console.log(counters[0], counters[1], counters[2], pointer);
-	while (counters[0] > 0 || counters[1] > 0 || counters[2] > 0) {
-
-		if (counters[2] > 0) {
-			counters[2]--;
-		} else {
-			pointer--;
-			counters[pointer]--;
-			counters[pointer + 1] = 3;
-
-	} 
+	// attempt at static solution with 3 passenger flights
+	let indexPointer = 0;
+	const counters = [0, 0, 0];
+	const arr = [];
+	while (counters[0] < passengerFlights['777'].length - 1 || counters[1] < passengerFlights['888'].length - 1 || counters[2] < passengerFlights['999'].length - 1) {
+		counters[0]++;
+		counters[1]++;
+		counters[2]++;
+		arr.push([passengerFlights['777'][0]._id, passengerFlights['888'][0]._id, passengerFlights['999'][0]._id]);
+	}
+	return arr;
 }
 
-getGroupedFlights(passengerFlights);
+const groupedFlights = getGroupedFlights(passengerFlights);
+console.log(groupedFlights);
